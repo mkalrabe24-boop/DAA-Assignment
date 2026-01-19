@@ -1,0 +1,40 @@
+/*
+Name=Mayank Kalra
+Roll No.=1024031178
+Group=2C82
+*/
+// Binary Search
+#include <iostream>
+using namespace std;
+
+int binarySearch(int arr[], int left, int right, int key)
+{
+    if (left <= right)
+    {
+        int mid = (left + right) / 2;
+
+        if (arr[mid] == key)
+            return mid;
+        else if (arr[mid] > key)
+            return binarySearch(arr, left, mid - 1, key);
+        else
+            return binarySearch(arr, mid + 1, right, key);
+    }
+    return -1;
+}
+
+int main()
+{
+    int arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
+    int n = 10;
+    int key = 23;
+
+    int result = binarySearch(arr, 0, n - 1, key);
+
+    if (result != -1)
+        cout << "Element found at index: " << result;
+    else
+        cout << "Element not found";
+
+    return 0;
+}
