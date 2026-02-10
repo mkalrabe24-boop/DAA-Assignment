@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Item {
+    int value, weight;
+};
+
+bool compare(Item a, Item b) {
+    return (double)a.value/a.weight > (double)b.value/b.weight;
+}
+
+int main() {
+    Item items[] = {{100,20},{60,10},{120,40}};
+    int n = 3, W = 50;
+
+    sort(items, items+n, compare);
+
+    double totalValue = 0;
+
+    for(int i = 0; i < n; i++) {
+        if(W >= items[i].weight) {
+            W -= items[i].weight;
+            totalValue += items[i].value;
+        } else {
+            totalValue += items[i].value * ((double)W/items[i].weight);
+            break;
+        }
+    }
+
+    cout << "Maximum value = " << totalValue;
+    return 0;
+}
